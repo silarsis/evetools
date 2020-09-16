@@ -33,5 +33,4 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm install -g cdk
-    - run: npm ci
     - run: cdk synth
