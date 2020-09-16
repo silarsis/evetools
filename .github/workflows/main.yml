@@ -16,10 +16,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: CDK Synth
-      uses: scottbrenner/aws-cdk-action@master
-      with:
-        args: synth
+    - name: Install python dependencies
+      run: pip install -r requirements.txt
+    - name: Synth
+      run: cdk synth
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
