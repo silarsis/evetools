@@ -42,4 +42,5 @@ jobs:
       run: cdk diff
     - name: Deploy
       #if: github.event_name == 'workflow_dispatch'
+      run: cdk bootstrap
       run: cdk deploy --require-approval never
