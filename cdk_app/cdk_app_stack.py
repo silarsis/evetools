@@ -32,9 +32,22 @@ class CdkAppStack(core.Stack):
             handler='hello.handler'
         )
 
+        authenticator_lambda = _lambda.Function(
+            self, 'AuthenticatorHandler', runtime=_lambda.Runtime.PYTHON_3_7,
+            code=_lambda.Code.asset('authenticator'),
+            handler='authenticator.handler'
+        )
+
+        authorizer = apigw.TokenAuthorizer(
+            self, 'EveOAuth',
+            handler=authenticator_lambda
+        )
+
         rest_api = apigw.LambdaRestApi(
             self, 'Endpoint',
-            handler=hello_lambda
+            handler=hello_lambda,
+            domain_name=domain_name,
+            authorizer=authorizer
         )
 
         # route53.ARecord(
@@ -42,3 +55,6 @@ class CdkAppStack(core.Stack):
         #     target=route53.RecordTarget(rest_api))
 
         # Also an A record for the S3 bucket
+
+        # OAuth callback
+        # https://api.eve.bofh.net.au/auth-callbac
