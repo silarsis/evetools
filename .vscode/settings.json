@@ -1,6 +1,15 @@
 {
-    "python.pythonPath": ".env\\Scripts\\python.exe",
     "cSpell.words": [
         "hname"
-    ]
+    ],
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./hello",
+        "-p",
+        "test*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true
 }
