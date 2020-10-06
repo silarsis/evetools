@@ -34,7 +34,7 @@ class CdkAppStack(core.Stack):
 
         authenticator_lambda = _lambda.Function(
             self, 'AuthenticatorHandler', runtime=_lambda.Runtime.PYTHON_3_7,
-            code=_lambda.Code.asset('authenticator'),
+            code=_lambda.Code.asset('hello'),
             handler='authenticator.handler'
         )
 
